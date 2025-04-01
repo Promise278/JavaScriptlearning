@@ -1,4 +1,4 @@
-// ARITHEMTIC OPERATOR'S WHICH ARE =, +=, -=, /=, *=,
+// ARITHEMTIC OPERATORS WHICH ARE =, +=, -=, /=, *=,
 
 
 // let array = [1, 2, 3, 5, 8]
@@ -113,13 +113,68 @@
 
 // comparism operator
 
-let a = 5
-let b = 20
-let c = 10
-let d = '5'
-let e = 0
+// let a = 5
+// let b = 20
+// let c = 10
+// let d = '5'
+// let e = 0
 
 // console.log(a==d)
-console.log(a!=d)
+// console.log(a!=d)
+
+// let a = 10
+// let x = 25
+
+// let less = a < x
+// console.log(less)
+
+// let m = 6
+// let n = 8
+// let z = 25
+
+// let great = m > n
+// console.log(great)
+
+// let q = 17
+// let v = 25
+
+// let notgreat = q >! v
+// let notgreat = q >= v
+
+// console.log(notgreat)
 
 
+// LOGICAL OPERATORS logical operators are typically used with boolean (logical) values; when they are, they return a boolean value.
+
+// as far as there is zero (0) in ANDGATE all other are zero
+// ORGATE is the opposite as far as there is on (1) all other are 1
+// && mutltiplication
+// || addition
+// operator precedense
+
+// let o1 = true && false || true 
+
+// console.log(o1)
+
+// let num = 1 && 0 || 1
+
+
+// console.log(num)
+
+
+
+let a = 10
+let b = 5
+let c = 10
+let d = 15
+let e = 11
+
+console.log(a > b)
+console.log(a <! b)
+console.log(a > b > c)
+console.log(a+b < d || a+b == d) // a+b =d
+console.log((c +=5) == d || a++ == e) // a++ = e
+
+
+let m = 2
+console.log(++m)
