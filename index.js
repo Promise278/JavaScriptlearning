@@ -1,15 +1,15 @@
-// let footBaller = {
-//     playerName: "Haland",
-//     lastName: "Jnr",
-//     ballondor: 12,
-//     age: 38,
-//     shirtNum: 7,
-//     club: 'Mancherster city',
-//     city: 'London',
-// }
+let footBaller = {
+    playerName: "Haland",
+    lastName: "Jnr",
+    ballondor: 12,
+    age: 38,
+    shirtNum: 7,
+    club: 'Mancherster city',
+    city: 'London',
+}
 
 
-// console.log(footBaller.playerName.);
+console.log(footBaller.playerName);
 
 // // ARRAYS
 
@@ -20,7 +20,7 @@
 // create an array of the footballer object that has three footballer object
 
 
-// let footBaller = [
+// let footBaller1 = [
 //     {
 //         name: 'Messi',
 //         shirtNum: 30,
@@ -35,7 +35,7 @@
 //     }
 // ]
 
-// console.log(footBaller)
+// console.log(footBaller1)
 
 // seven data types 
 // 1 string = "Promise"
@@ -52,13 +52,15 @@
 
 // age = 12
 
-// function checkage(number) {
+// function checkage(age) {
 //     if (age < 18) {
-//         alert('come back alert')
-//     } else  {
-//         alert('thanks')
+//         console.log('come back latter')
+//     } else  {]
+//         console.log('thanks')
 //     }
 // }
+
+// checkage(17)
 
 // console.log(age)
 

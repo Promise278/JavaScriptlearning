@@ -52,16 +52,45 @@
 // }
 
 
-let age = 18;
+// let age = 18;
 
-switch (age) {
-    case 18:
-        console.log("You are exactly 18");
-        break;
-    case 14:
-        console.log("You are good to go");
-        break;
-    default:
-        console.log("Passed");
-        break;
+// switch (age) {
+//     case 18:
+//         console.log("You are exactly 18");
+//         break;
+//     case 14:
+//         console.log("You are good to go");
+//         break;
+//     default:
+//         console.log("Passed");
+//         break;
+// }
+
+
+// find the mountains pick.
+
+
+let input = [1,3,2,4,1,5,2,10]
+let output = [];
+
+for (let i = 0; i < input.length; i++) {
+    if (input[i] > input[i - 1] && input[i] > input[i + 1]) {
+        output.push(input[i])
+    }
 }
+console.log(output)
+
+
+function deleteStu(id) {
+    let removedStudent = studentsDb.filter(student => {
+        studentsDb.id != id
+    });
+    console.log("student deleted from the array", removedStudent)
+    console.log("after poping out one student", studentsDb)
+    studentsDb = removedStudent;
+}
+
+
+console.log(studentsDb)
+
+deleteStu(2)

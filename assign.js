@@ -71,16 +71,84 @@
 //     }
 // }
 
-let students = [
-    "james",
-    "prmise",
-    "philip",
-    "esther",
-    "pius",
-    "grace"
+// let students = [
+//     "james",
+//     "prmise",
+//     "philip",
+//     "esther",
+//     "pius",
+//     "grace"
+// ]
+
+// for (let i = 0; i < students.length; i++) {
+//     console.log(`Welcome to Blockfuse Labs ${students[i ]}`);
+    
+// }
+
+
+
+let array = [
+    8, 6, 2, 4, 11, 16, 26, 5, 102
 ]
 
-for (let i = 0; i < students.length; i++) {
-    console.log(`Welcome to Blockfuse Labs ${students[i ]}`);
-    
+let max = 0
+
+for (let i = 0; i < array.length; i++) {
+    if (max < array[i]) {
+        max = array[i]
+    }
 }
+console.log(max)
+
+
+// implement a grading system 100-90 -- A, 90-89 -- B, 70-79 -- C, 60-69 -- D, below 60 -- E/F 
+
+let score = 89
+let grade;
+let message;
+
+for (let i = 0; i < score; i++) {
+    if (score > 90 && score <= 100) {
+        grade = "A"
+        message = `your passed and your grade is ${grade}`
+    } else if (score >= 80 && score <= 90) {
+        grade = "B"
+        message = `your passed and your grade is ${grade}`
+    } else if (score >= 70 && score <= 79) {
+        grade = "C"
+        message = `your passed and your grade is ${grade}`
+    } else if (score >= 60 && score <= 69) {
+        grade = "D"
+        message = `your passed on trial and your grade is ${grade}`
+    } else {
+        grade = "E"
+        message = `your failed whoofly and your grade is ${grade}`
+    } 
+}
+
+
+console.log(message)
+// console.log(grade)
+
+
+
+// let factory = 100
+
+// for (let i = 1; i < 100; i++) {
+//     factory *= i
+// }
+
+// console.log(factory)
+
+
+
+
+// Fibonacci sequence
+
+let fibon = [0, 11]
+for (let i = 2; i < 10; i++) {
+    fibon.push(fibon[i-1] + fibon[i-2]);
+}
+
+console.log(fibon)
+
