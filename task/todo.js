@@ -101,7 +101,7 @@ deletedTodo();
 
 function addMovie(title,) {
 let taskId = todo.length +1;
-    let todoitems = {
+    let movieitems = {
         title: title,
         id: taskId,
         genre: genre,
@@ -113,21 +113,21 @@ let taskId = todo.length +1;
 }
 
 
-addMovie("coco", 12, 2008, false);
-addMovie("frozen", 1, 2012, true);
-addMovie("Escape", 23, 2020, false);
-addMovie("PrisonBreak", 47, 2023, true);
+addMovie("coco", 12, 2008, );
+addMovie("frozen", 1, 2012,);
+addMovie("Escape", 23, 2020,);
+addMovie("PrisonBreak", 47, 2023,);
 
-// function movieStatus() {
-//     let completedmovie = movie.filter(movieitem => movieitem.watched === true);
-//     let pendingmovie = movie.filter(movieitem => movieitem.watched === false);
+function movieStatus() {
+    let completedmovie = movie.filter(movieitem => movieitem.watched === true);
+    let pendingmovie = movie.filter(movieitem => movieitem.watched === false);
 
-//     console.log("checking status of movies")
-//     console.log("Completed Movie:", completedmovie);
-//     console.log("Pending Movie:", pendingmovie);
-// }
+    console.log("checking status of movies")
+    console.log("Completed Movie:", completedmovie);
+    console.log("Pending Movie:", pendingmovie);
+}
 
-// movieStatus();
+movieStatus();
 
 
 
@@ -144,61 +144,10 @@ addMovie("PrisonBreak", 47, 2023, true);
 
 
 
-// function deletedMovie() {
-//     let removedmovie = movie.pop();
-//     console.log("movie deleted from watchlist", removedmovie)
-//     console.log("after deleting movie from watchlist", movie)
-// }
+function deletedMovie() {
+    let removedmovie = movie.pop();
+    console.log("movie deleted from watchlist", removedmovie)
+    console.log("after deleting movie from watchlist", movie)
+}
 
-// deletedMovie();
-
-
-
-
-// let task = []
-// function  addTask (title){
-
-//     let newTask =  {
-//         title : title,
-//         id : Date.now(),
-//         completed:false
-
-//     }
-//     task.push(newTask)
-   
-       
-    
-// }
-// addTask('go to class');
-// addTask('to to church');
-// addTask('recreational activities')
-// console.log(task)
-
-// function taskDone (taskId){
-//     task.forEach((task) => {
-//        if (task.id === id){
-//         task.completed = true
-//         console.log(task)
-//        }
-//     });
-
-    // for (let tasks in task){
-    //     if (task[tasks].id !== taskId){
-    //         task[tasks].completed === true
-    //     }
-    // }
-    
-    // let notComplete = false
-    
-    // for (let i = 0; i < task.length; i++){
-    //     if (task[i].id === taskId){
-    //     task[i].completed  = true
-    //         notComplete = true
-    //         console.log(task)
-
-    //     }
-    // }
-    
-// }
-// console.log(task)
-// taskDone (1743896792604)
+deletedMovie();

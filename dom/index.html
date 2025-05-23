@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM MANIPULATION</title>
+    <style>
+        #card{
+            background-color: aqua;
+            align-items: center;
+            align-content: center;
+            color: red;
+            font-size: larger;
+            padding-left: 12px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="card"></div>
+    
+    <!-- <h2 class="simple">my name is promise</h2>
+    <h2 class="hard">my name is rust</h2>
+
+    <p id="paragraph">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur laboriosam ipsum numquam beatae veritatis similique ipsam quae cumque. Minus expedita atque deleniti qui eveniet dolorum sit harum incidunt itaque eum?</p> -->
+
+    <script>
+
+
+        let fullname = document.createElement("p")
+        fullname.innerHTML = "Name: Promise Pius Obi";
+        card.appendChild(fullname);
+
+        let biodata = document.createElement("p")
+        biodata.innerHTML = "Data: Im an igbo boy from Anambra im a software developer and a web developer in blockfuse labs currently learning javascript and im really grateful to be here";
+        card.appendChild(biodata);
+
+        let hobbies = document.createElement("p")
+        hobbies.innerHTML = "Hobbies: I love writing code and loving listening music and videos and also love playing games";
+        card.appendChild(hobbies);
+
+        let techstack = document.createElement("p")
+        techstack.innerHTML = "TechStack: My Tech stack is HTML CSS TAILWIND REACT JAVASCRIPT REACT-NATIVE";
+        card.appendChild(techstack);
+
+
+        let card = document.getElementById("card")
+    </script>
+</body>
+</html>

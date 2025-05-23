@@ -27,9 +27,11 @@
 // position of element in an array is called the index
 
 
-let number = [1, 2, 3, 7, 4, 5, 6]
+let number = [1, 2,[4, 5], 3, 7, 4, 5, 6]
 
 // number.splice() 
+// number[0]=50
 number.push(7)
+number[2].pop()
 
 console.log(number)

@@ -122,9 +122,6 @@ function update(id,elem,value){
     let toUpdate = studentsDb.indexOf(studentsDb.find(student =>student.id == id))
     studentsDb[toUpdate][elem]=value
     console.log(studentsDb)
-
-    
-
 }
 
 update(2,"age",12)

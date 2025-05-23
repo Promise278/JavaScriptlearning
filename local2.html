@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>localStorage Example</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- CSS for Toastr -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+
+<!-- jQuery (required for toastr.js by default) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md text-center space-y-6">
+    <h1 class="text-2xl font-bold text-gray-700">Welcome</h1>
+    
+    <input id="nameInput" placeholder="Type your name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    
+    <div class="flex justify-center gap-4">
+      <button id="reload" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition">Show window</button>
+      <button onclick="showName()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow-md transition">Show Name</button>
+    </div>
+
+    <p id="display" class="text-lg text-green-500 font-medium"></p>
+  </div>
+
+  <script>
+    let button = document.getElementById("reload")
+
+    button.addEventListener("click", () => {
+      let count = localStorage.getItem('visitCount');
+      count++;
+      localStorage.setItem('visitCount', count);
+      alert("You've opened this page " + count + " times!");
+      toastr.success('Data  successfully!');
+      toastr.error('Something went wrong.');
+      toastr.warning('Check your inputs.');
+      toastr.info('Just letting you know...');
+    })
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="get">
+        <label for="name">FullName</label> <br>
+        <input type="text" name="FullName" placeholder="Enter FullName" required minlength="3">
+        <br>
+
+        <label for="password">Password</label> <br>
+        <input type="password" name="password" placeholder="input your password"> 
+
+        <br>
+
+        <label for="journel-category">JournelCategory</label> <br>
+        <select name="category" id="journel-category">
+            <option value="idea">Idea</option>
+            <option value="mood">Mood</option>
+            <option value="Goal">Goal</option>
+        </select>
+
+        <br>
+
+        <label for="journel-entry">JournelEntry</label> <br>
+        <textarea name="entry" id="journel-entry" cols="30" rows="5" required minlength="3"></textarea>
+
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="content"></div>
+    
+    <script>
+        let items = document.getElementById("content")
+        fetch("https://todo-api-dom.vercel.app/api/todos").then((response) => response.json()).then((data) => {
+            console.log(data)
+            items.appendChild(data)
+            data.forEach(todo => {
+                const div = document.createElement("div");
+                div.textContent = todo.title;
+                items.appendChild(div);
+            });
+            div.innerHTML = `<strong>${todo.title}</strong><p>${todo.description}</p>`;
+        })
+    </script>
+</body>
+</html>
