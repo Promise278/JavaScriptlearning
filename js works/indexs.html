@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Register & Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-xl rounded-lg p-10 w-full max-w-2xl">
+      <h2 class="text-2xl font-bold mb-6 text-center text-blue-700">
+        Register Form
+      </h2>
+      <form id="registerForm" class="space-y-4 mb-10">
+        <input
+          class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+          type="text"
+          id="fullname"
+          placeholder="Full Name"
+          required
+        />
+        <input
+          class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+          type="email"
+          id="email"
+          placeholder="Email"
+          required
+        />
+        <input
+          class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+          type="password"
+          id="password"
+          placeholder="Password"
+          required
+        />
+        <select
+          id="team"
+          class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+        >
+          <option value="Elon">Elon</option>
+          <option value="Titans">Titans</option>
+          <option value="Phoenix">Phoenix</option>
+          <option value="Pull Request">Pull Request</option>
+          <option value="404">404</option>
+        </select>
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+        >
+          Register
+        </button>
+        <p id="message" class="text-center text-sm text-gray-600 mt-2"></p>
+      </form>
+
+      <h2 class="text-2xl font-bold mb-6 text-center text-green-700">Login</h2>
+      <form id="loginForm" class="space-y-4">
+        <input
+          class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-green-300"
+          type="email"
+          id="loginEmail"
+          placeholder="Email"
+          required
+        />
+        <input
+          class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-green-300"
+          type="password"
+          id="loginPassword"
+          placeholder="Password"
+          required
+        />
+        <select
+          id="loginTeam"
+          class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-green-300"
+        >
+          <option value="Elon">Elon</option>
+          <option value="Titans">Titans</option>
+          <option value="Phoenix">Phoenix</option>
+          <option value="Pull Request">Pull Request</option>
+          <option value="404">404</option>
+        </select>
+        <button
+          type="submit"
+          class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition"
+        >
+          Login
+        </button>
+        <button
+          onclick="createPost()"
+          class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 mt-6"
+        >
+          Submit Post
+        </button>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById("registerForm");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const fullname = document.getElementById("fullname").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const team = document.getElementById("team").value;
+
+        fetch("https://test.blockfuselabs.com/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: fullname,
+            email: email,
+            password: password,
+            team_name: team,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.message) {
+              localStorage.setItem("token", data.token);
+              localStorage.setItem(
+                "user",
+                JSON.stringify({
+                  name: fullname,
+                  email: email,
+                  team: team,
+                })
+              );
+              alert("✅ Success: " + data.message);
+            } else if (data.token) {
+              alert("✅ Registered successfully. Token: " + data.token);
+            } else {
+              alert("❌ Failed: " + JSON.stringify(data));
+            }
+          })
+          .catch((error) => {
+            console.error("❌ Network or Server Error:", error);
+            alert("⚠️ Something went wrong. Check the console.");
+          });
+      });
+
+      const loginForm = document.getElementById("loginForm");
+
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+        const team = document.getElementById("loginTeam").value;
+
+        fetch("https://test.blockfuselabs.com/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            team_name: team,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("Login Response:", data);
+            if (data.token) {
+              localStorage.setItem("token", data.token);
+              localStorage.setItem(
+                "user",
+                JSON.stringify({
+                  name: fullname,
+                  email: email,
+                  team: team,
+                })
+              );
+              alert("✅ Login successful. Token: " + data.token);
+              // window.location.href = "/api.html";
+            } else {
+              alert("❌ Login failed: " + JSON.stringify(data));
+            }
+          })
+          .catch((error) => {
+            console.error("❌ Login Error:", error);
+            alert("⚠️ Something went wrong during login. Check the console.");
+          });
+      });
+
+      // Example function to submit a new post
+      function createPost() {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          alert("You must be logged in first!");
+          return;
+        }
+
+        const postData = {
+          title: "My First Post",
+          description: "This is a post submitted using the token.",
+          // Add more fields as required by the API
+        };
+
+        fetch("https://test.blockfuselabs.com/api/posts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Attach token here
+          },
+          body: JSON.stringify(postData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("✅ Post Created:", data);
+            alert("✅ Post submitted successfully!");
+          })
+          .catch((error) => {
+            console.error("❌ Error submitting post:", error);
+            alert("❌ Failed to submit post.");
+          });
+      }
+    </script>
+  </body>
+</html>

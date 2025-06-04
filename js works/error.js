@@ -1,0 +1,1 @@
+console.log(Error('something sweat happened i think you`re a programmer fixed it'));

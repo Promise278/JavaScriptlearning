@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo's Api</h1>
+    <ul id="todo"></ul>
+
+    <div id="content"></div>
+    
+    <script>
+        fetch("https://todo-api-dom.vercel.app/api/todos").then((response) => response.json()).then((data) => {
+            console.log(data)
+            let items = data;
+
+            items.forEach(item => {
+                let p = document.createElement("p")
+                p.innerHTML = `${item.userId}, ${item.id}, ${item.title}, ${item.completed}`
+                document.getElementById("content").appendChild(p)
+            })
+        })
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo's Api</title>
+    <style>
+        #content, #todo {`
+            display: block;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Todo's Api</h1>
+    <ul id="todo"></ul>
+    <div id="content"></div>
+    
+    <script>
+        fetch("https://jsonplaceholder.typicode.com/todos")
+            .then((response) => {
+                if (!response.ok) throw new Error("Network response was not ok");
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                let items = data;
+                if (Array.isArray(items)) {
+                    items.forEach(item => {
+                        let li = document.createElement("li");
+                        li.innerHTML = `${item.userId}, ${item.id}, ${item.title}, ${item.completed}`;
+                        document.getElementById("todo").appendChild(li);
+                    });
+                } else {
+                    document.getElementById("content").innerHTML = "No todos found.";
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                document.getElementById("content").innerHTML = "Failed to load todos.";
+            });
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Fetch API Example</h1>
+    <div id="todo"></div>
+    <script>
+
+        fetch("https://jsonplaceholder.typicode.com/todos").then((response) => response.json()).then((data) =>{
+            let contents = data
+
+            contents.forEach(element => {
+                let div = document.createElement("div")
+                div.innerHTML=`${element.userId}, ${element.id}, ${element.title}, ${element.completed}`
+                document.getElementById("todo").appendChild(div)
+            });
+        })
+        // fetch("https://jsonplaceholder.typicode.com/todos", {
+        //     method: "GET",
+        //     headers: { "Accept": "application/json" }
+        // })
+        // .then((response) => response.json())
+        // .then((data) => {
+        //     console.log(data)
+        // });
+        
+    </script>
+</body>
+</html> -->

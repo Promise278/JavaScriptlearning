@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create a Post</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white rounded-2xl shadow-md w-full max-w-xl p-6 space-y-6">
+      <h2 class="text-2xl font-bold text-gray-800">Create a Post</h2>
+
+      <!-- Title Input -->
+      <div>
+        <label for="title" class="block text-sm font-medium text-gray-700"
+          >Post Title</label
+        >
+        <input
+          type="text"
+          id="title"
+          placeholder="Enter a catchy title..."
+          class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        />
+      </div>
+
+      <!-- Description Textarea -->
+      <div>
+        <label for="description" class="block text-sm font-medium text-gray-700"
+          >Description</label
+        >
+        <textarea
+          id="description"
+          rows="5"
+          placeholder="Write something awesome..."
+          class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        ></textarea>
+      </div>
+
+      <!-- Image Upload -->
+      <div>
+        <label for="image" class="block text-sm font-medium text-gray-700"
+          >Upload Image (optional)</label
+        >
+        <input
+          type="file"
+          id="image"
+          accept="image/*"
+          class="mt-1 w-full text-gray-700 border border-gray-300 rounded-lg px-3 py-2 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-right">
+        <button
+          id="post"
+          class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+        >
+          Post
+        </button>
+      </div>
+      <!-- Spinner -->
+      <div
+        id="spinner"
+        class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto my-4"
+      ></div>
+
+      <!-- get post -->
+      <div class="p-4 max-w-md mx-auto bg-white rounded-lg shadow">
+        <input
+          type="number"
+          id="postInput"
+          placeholder="Enter something..."
+          class="w-full px-4 py-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          id="submitPost"
+          class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        >
+          GetPost
+        </button>
+        <p class="pt-2" id="items"></p>
+      </div>
+    </div>
+
+    <script>
+      let button = document.getElementById("post");
+      let spinner = document.getElementById("spinner");
+
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        let title = document.getElementById("title").value.trim();
+        let content = document.getElementById("description").value.trim();
+        let image = document.getElementById("image").files[0];
+
+        if (!title || !content || !image) {
+          toastr.error("All fields are required, including the image.");
+          return;
+        }
+
+        spinner.classList.remove("hidden");
+        button.disabled = true;
+
+        let formData = new FormData();
+        formData.append("title", title);
+        formData.append("content", content);
+        formData.append("category_id", "1");
+        formData.append("featured_image", image);
+
+        let user = {
+          title,
+          content,
+          image,
+        };
+
+        fetch("https://test.blockfuselabs.com/api/posts", {
+          method: "POST",
+          headers: {
+            Accept: "*/*",
+            Authorization:
+              "Bearer 313|4ahjJ5Xqa5gGxBY68cA3Fn5lHQm6mL09BNYALiZke165303b",
+          },
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("Post created:", data);
+            toastr.success("Post created Successfull!");
+            localStorage.setItem("user", JSON.stringify(user));
+          })
+          .catch((error) => {
+            console.error("Post error:", error);
+            toastr.error("Something went wrong.");
+          });
+      });
+
+      let button2 = document.getElementById("submitPost");
+      let items = document.getElementById("items");
+
+      button2.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        let postId = document.getElementById("postInput").value;
+
+        fetch("https://test.blockfuselabs.com/api/posts/170")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Fetched post:", data);
+            let house = document.createElement("p");
+            house.innerHTML = `<strong>${data.title}</strong><br>${data.content}`;
+            house.className = "gap-2";
+
+            items.appendChild(house);
+          });
+      });
+    </script>
+  </body>
+</html>
